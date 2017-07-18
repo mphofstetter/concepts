@@ -2,13 +2,16 @@
 
 	private static $log = array();
 
+	public static function writeLine($string){
+		self::$log[] = $string . "\n";
+	}
+
 	public static function write($string){
 		self::$log[] = $string;
 	}
 
 	public static function toHTML(){
-		$results = implode("\n", self::$log);
-		$results .= "\n";
+		$results = implode("", self::$log);
 		return $results;
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 
-require_once('config.php');
-require_once('log.php');
+require_once('config/config.php');
+require_once('model/log.php');
 
 $sim = $_POST['sim'];
 
@@ -14,4 +14,4 @@ if(!in_array($sim, $allowed)){
 	exit;
 }
 
-require_once($sim . '.php');
+require_once('pages/' . $sim . '.php');

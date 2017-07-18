@@ -1,9 +1,9 @@
-<?php require_once("config.php"); ?>
+<?php require_once("config/config.php"); ?>
 <html>
 
 <head>
 
-	<script src="/jquery.js"></script>
+	<script src="/js/jquery.js"></script>
 
 	<script type="text/javascript">
 
