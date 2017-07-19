@@ -15,6 +15,8 @@
 
 	var lastClickEvent;
 
+	var reset = true;
+
 	function render(data){		
 		ctx.clearRect ( 0 , 0 , 800 , 500 ); 
 		var results = JSON.parse(data);
@@ -106,6 +108,11 @@
 			sendData.clickEvent.x = lastClickEvent.pageX - offsetLeft;
 			sendData.clickEvent.y = lastClickEvent.pageY - offsetRight;
 			lastClickEvent = null;
+		}
+
+		if(reset){
+			sendData.reset = true;
+			reset = false;
 		}
 
 		$.post("/update.php", sendData, function(data){			
