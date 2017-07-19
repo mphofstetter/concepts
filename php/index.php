@@ -10,8 +10,10 @@
 	var ONE_FRAME_TIME = 1000 / 60 ;
 	var ON = false;
 
+	var canvas;
 	var ctx;
 
+	var lastClickEvent;
 
 	function render(data){		
 		ctx.clearRect ( 0 , 0 , 800 , 500 ); 
@@ -93,13 +95,32 @@
 			return;
 		}
 
-		$.post("/update.php",{sim: "<?php echo $_GET['sim']; ?>"}, function(data){			
+		var sendData = {};
+		sendData.sim = "<?php echo $_GET['sim']; ?>";
+		if(lastClickEvent != null){
+
+			var offsetLeft = canvas.offsetLeft;
+    		var offsetRight = canvas.offsetTop;
+
+			sendData.clickEvent = {}
+			sendData.clickEvent.x = lastClickEvent.pageX - offsetLeft;
+			sendData.clickEvent.y = lastClickEvent.pageY - offsetRight;
+			lastClickEvent = null;
+		}
+
+		$.post("/update.php", sendData, function(data){			
 			render(data);
 		});		
 	};
 
 	$(document).ready(function(){
-		ctx = document.getElementById('canvas').getContext('2d');
+
+		canvas = document.getElementById('canvas');
+		ctx = canvas.getContext('2d');
+
+		canvas.addEventListener('click', function(event) {
+			lastClickEvent = event;
+		 }, false);
 
 		$('#start').click(function(){
 			ON = !ON;

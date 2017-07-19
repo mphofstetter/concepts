@@ -5,11 +5,15 @@ require_once('model/polygon.php');
 require_once('model/circle.php');
 require_once('model/text.php');
 
+if(!empty($clickEvent)){
+	Log::writeLine($clickEvent['x'] . " " . $clickEvent['y']);
+}
+
 $polygon = new Polygon();
 $polygon->color = "#f00";
 $polygon->px = 25;
 $polygon->py = 5;
-$polygon->addPoint(25, 5);
+$polygon->addPoint(0, 0);
 $polygon->addPoint(100, 50);
 $polygon->addPoint(50, 100);
 $polygon->addPoint(0, 90);
@@ -29,7 +33,7 @@ $text->py = 20;
 $text->setText("Sample Text!");
 
 //Log::writeLine("This is a sample log 1");
-Log::write(".");
+//Log::write(".");
 
 $objects = array();
 

@@ -14,4 +14,6 @@ if(!in_array($sim, $allowed)){
 	exit;
 }
 
+$clickEvent = $_POST['clickEvent'];
+
 require_once('pages/' . $sim . '.php');
